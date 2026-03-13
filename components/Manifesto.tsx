@@ -30,12 +30,8 @@ export default function Manifesto() {
         <div className="t-line h-[1px] bg-divider mt-10 md:mt-14 mb-10 md:mb-14" />
         <div className="t-stagger flex flex-wrap gap-4">
           <a
-            href="#about"
+            href="/about"
             className="pill pill-outline"
-            onClick={(e) => {
-              e.preventDefault()
-              fastScrollTo('about')
-            }}
           >
             {t.manifesto.aboutBtn}
             <span>{'\u2192'}</span>

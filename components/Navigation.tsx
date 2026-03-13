@@ -20,11 +20,6 @@ export default function Navigation() {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
       gsap.fromTo(
-        menuRef.current,
-        { xPercent: 100 },
-        { xPercent: 0, duration: 0.6, ease: 'power3.out' }
-      )
-      gsap.fromTo(
         '.menu-link',
         { y: 60, opacity: 0 },
         {
@@ -33,18 +28,11 @@ export default function Navigation() {
           stagger: 0.08,
           duration: 0.6,
           ease: 'power3.out',
-          delay: 0.2,
+          delay: 0.3,
         }
       )
     } else {
       document.body.style.overflow = ''
-      if (menuRef.current) {
-        gsap.to(menuRef.current, {
-          xPercent: 100,
-          duration: 0.4,
-          ease: 'power3.in',
-        })
-      }
     }
   }, [menuOpen])
 
@@ -68,11 +56,11 @@ export default function Navigation() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-          scrolled ? 'bg-cream/90 backdrop-blur-md' : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          menuOpen ? 'bg-transparent' : scrolled ? 'bg-cream/90 backdrop-blur-md' : 'bg-transparent'
         }`}
       >
-        <div className="container-main flex items-center justify-between h-16 md:h-20">
+        <div className="container-main flex items-center justify-between h-16 md:h-20 relative z-50">
           <a
             href="#"
             className="font-display text-2xl md:text-3xl tracking-tight z-50 relative"
@@ -117,24 +105,22 @@ export default function Navigation() {
 
       <div
         ref={menuRef}
-        className="fixed inset-0 z-30 bg-cream flex flex-col justify-center translate-x-full"
+        className={`fixed inset-0 z-40 bg-cream flex flex-col justify-center transition-all duration-500 ${menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
       >
         <div className="container-main">
           <div className="flex flex-col gap-3 md:gap-5">
-            {[
-              { label: t.nav.work, id: 'work' },
-              { label: t.nav.about, id: 'about' },
-              { label: t.nav.services, id: 'services' },
-              { label: t.nav.contact, id: 'contact' },
-            ].map((item, i) => (
-              <button
-                key={i}
-                className="menu-link text-left font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight hover:text-accent transition-colors duration-300 cursor-pointer leading-[1.1]"
-                onClick={() => scrollTo(item.id)}
-              >
-                {item.label}
-              </button>
-            ))}
+            <a
+              href="/about"
+              className="menu-link text-left font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight hover:text-accent transition-colors duration-300 cursor-pointer leading-[1.1] uppercase"
+            >
+              {t.nav.about}
+            </a>
+            <button
+              className="menu-link text-left font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight hover:text-accent transition-colors duration-300 cursor-pointer leading-[1.1] uppercase"
+              onClick={() => scrollTo('contact')}
+            >
+              {t.nav.contact}
+            </button>
           </div>
 
           <div className="mt-16 flex gap-8">
@@ -145,14 +131,6 @@ export default function Navigation() {
               rel="noopener noreferrer"
             >
               LinkedIn
-            </a>
-            <a
-              href="#"
-              className="text-label text-muted hover:text-ink transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
             </a>
           </div>
         </div>

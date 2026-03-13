@@ -16,7 +16,7 @@ const dmSans = DM_Sans({
 
 
 export const metadata: Metadata = {
-  title: 'World of Yesod | \u7D2B\u5251\u5DE5\u4F5C\u5BA4',
+  title: "yesod's | \u7D2B\u5251\u5DE5\u4F5C\u5BA4",
   description:
     'AI Architecture & Product Strategy. Partnering with startups and enterprises to design, build, and scale intelligent systems.',
 }

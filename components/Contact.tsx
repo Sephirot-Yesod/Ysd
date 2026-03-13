@@ -49,12 +49,8 @@ export default function Contact() {
 
             <div className="t-stagger mt-12 md:mt-16">
               <a
-                href="#about"
+                href="/about"
                 className="pill pill-accent text-sm md:text-base px-8 md:px-10 py-4"
-                onClick={(e) => {
-                  e.preventDefault()
-                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
-                }}
               >
                 more about me
                 <span className="text-xs">&rarr;</span>
